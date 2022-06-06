@@ -1,0 +1,67 @@
+int awal = 0;
+int move = 4;
+boolean rotasiX = true;
+boolean rotasiY = true;
+boolean rotasiZ = true;
+
+
+void setup(){
+  size(1000,1000,P3D);
+}
+void draw(){
+  background(255 ,0,255);
+  lights();
+  translate(500, 500);
+  stroke(128,128,0);
+  line(0,1000,0,-1000); //sumbu Y
+  line(1000,0,-1000,0); //sumbu x
+  stroke(255,0,0);
+    
+  pushMatrix();
+    if(rotasiX){
+      // Roll
+      rotateX(radians(awal));
+    }
+    if(rotasiY){
+      // Pitch
+      rotateY(radians(awal));
+    }
+    if(rotasiZ){
+      // Yaw
+      rotateZ(radians(awal));
+    }
+    awal += move;
+
+    if (awal < 0){
+      move = -move;
+      awal += move;
+    }
+    box(160);
+  popMatrix();
+
+}
+
+
+void keyPressed(){
+  if(key == 'x'){
+    rotasiX = true;
+  }
+  if(key == 'y'){
+    rotasiY = true;
+  }
+  if(key == 'z'){
+    rotasiZ = true;
+  }
+}
+
+void keyReleased(){
+  if(key == 'x'){
+    rotasiX = false;
+  }
+  if(key == 'y'){
+    rotasiY = false;
+  }
+  if(key == 'z'){
+    rotasiZ = false;
+  }
+}
